@@ -1,0 +1,31 @@
+# Failure-Aware Robustness Evaluation of TB Detection Models
+# under Synthetic Chest X-ray Degradation
+#
+# Environment used for the reported analyses:
+#   Python 3.10, single NVIDIA RTX A5000 (24 GB), CUDA 12.1
+#
+# GPU install (CUDA 12.1) -- run this line first, then `pip install -r requirements.txt`:
+#   pip install torch==2.1.0 torchvision==0.16.0 --index-url https://download.pytorch.org/whl/cu121
+#
+# CPU-only install (tables can be regenerated from the released predictions
+# without a GPU; retraining on CPU is not practical):
+#   pip install torch==2.1.0 torchvision==0.16.0 --index-url https://download.pytorch.org/whl/cpu
+
+# --- deep learning ---------------------------------------------------------
+torch==2.1.0
+torchvision==0.16.0
+
+# --- numerical and data ----------------------------------------------------
+# numpy is held below 2.0: torch 2.1 was built against the 1.x ABI.
+numpy==1.26.4
+pandas==2.1.4
+scikit-learn==1.3.2          # roc_auc_score, roc_curve, StratifiedKFold
+
+# --- image handling --------------------------------------------------------
+pillow==10.1.0               # loading, and the JPEG encode/decode round trip
+opencv-python==4.8.1.78      # motion-blur convolution and bilinear resizing
+
+# --- figures and notebook --------------------------------------------------
+matplotlib==3.8.2            # degradation sanity-check panel
+jupyterlab==4.0.9
+ipykernel==6.27.1
